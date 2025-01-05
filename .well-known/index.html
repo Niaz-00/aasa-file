@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Apple App Site Association</title>
+  <style>
+    body {
+      font-family: monospace;
+      white-space: pre-wrap; /* Preserve spaces and line breaks */
+      background-color: #f9f9f9;
+      color: #333;
+      padding: 20px;
+    }
+  </style>
+</head>
+<body>
+  <div id="content">Loading...</div>
+
+  <script>
+    // Fetch the file content from .well-known/apple-app-site-association
+    fetch('apple-app-site-association')
+      .then(response => {
+        if (!response.ok) {
+          throw new Error('Network response was not ok');
+        }
+        return response.text();
+      })
+      .then(text => {
+        // Display the content of the file inside the div
+        document.getElementById('content').textContent = text;
+      })
+      .catch(error => {
+        // If there’s an error loading the file, display it
+        document.getElementById('content').textContent = 'Error loading file: ' + error.message;
+      });
+  </script>
+</body>
+</html>
